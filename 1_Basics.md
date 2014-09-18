@@ -81,4 +81,32 @@ Transloadit jQuery pluginは、いくつかの追加機能を供給します。�
 </script>
 ```
 
+## 1.3 assembly 命令の構築
+
+## 1.4 assembly 命令のセキュリティ
+
+## 1.5 ファイルを保存&表示処理
+
+お客様のアップロードフォームサブミットされる（もしくはassembly 通知が送られる）と、Transloaditから結果情報を持ち、データベースに結果ファイルのURLを保存できます。
+
+応答結果のJSONには、uploadsキーとresultsキーに気づくだろう。それは、元ファイルのアップロードと変換結果のめいめいを含んでいる。より詳細に応答結果のJSONや書式を知りたければ、「[6. API responses](https://transloadit.com/docs/api-docs#api-responses)」
+
+------------------------------------------------------
+
+```
+【重要】Transloaditはお客様のファイルを一時的に保存します。これらの一時ファイルURLの有効期限は２４時間後であり、それらをアクセス不可にします。お客様のファイルを永続的にさせるには、以下のストレージロボットを使うことができる。
+```
+
+ * [/s3/store](https://transloadit.com/docs/conversion-robots#s3-store)
+ * [/cloudfiles/store](https://transloadit.com/docs/conversion-robots#cloudfiles-store)
+ * [/sftp/store](https://transloadit.com/docs/conversion-robots#sftp-store)
+ * [/ftp/store](https://transloadit.com/docs/conversion-robots#ftp-store)
+ * [/youtube/store](https://transloadit.com/docs/conversion-robots#youtube-store)
+
+------------------------------------------------------
+
+Transloaditはアップロードファイルからメタデータを抽出するのに良い仕組みです。そのため、結果情報ファイルのURLｓを保存することに加えて、同時にメタデータを保存すること検討するだろう。
+ユーザは、探すことになるビデオや画像についてより多くの情報を見ることになることに気づくことが多い。
+お客様が、やりやすいようにWeb上でファイルを表示するために あらゆるWebサービスやツールと結合することは自由です。動画を表示するために、[flowplayer](http://flowplayer.org/)もしくは[mediaelementjs](http://mediaelementjs.com/)を使うことを推奨します。
+
 
