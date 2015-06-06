@@ -2,7 +2,7 @@ Contents ≫ APM ≫ New Relic APM ≫ Apdex
 
 ## Apdex: Measuring user satisfaction (Apdex: ユーザ満足度計測)
 
-Apdex is an industry standard to measure users' satisfaction with the response time of an application or service. It's a simplified Service Level Agreement (SLA) solution that gives application owners better insight into how satisfied users are, in contrast to traditional metrics like average response time, which can be skewed by a few very long responses.
+Apdex is an industry standard to measure users' satisfaction with the response time of an application or service. It's a simplified Service Level Agreement (SLA) solution that gives application owners better insight into how satisfied users are, in contrast to traditional metrics like average response time, which can be skewed by a few very long responses.   
 Apdexは、アプリケーションやサーバのレスポンス時間を介したユーザの満足度に対する業界標準です。満足されたユーザーがいるかどうか、アプリケーションオーナーに見抜けるようにさせることを簡単化したサービス品質保証(SLA)のソリューションであり、少ない長時間の応答時間によって歪みとなりえる平均応答時間のような従来のメトリクスとは対照となる。
 
 ## Contents
@@ -16,33 +16,33 @@ Apdexは、アプリケーションやサーバのレスポンス時間を介し
 
 ## Apdex measurements
 
-Apdex is a measure of response time based against a set threshold. It measures the ratio of satisfactory response times to unsatisfactory response times. The response time is measured from an asset request to completed delivery back to the requestor.
+Apdex is a measure of response time based against a set threshold. It measures the ratio of satisfactory response times to unsatisfactory response times. The response time is measured from an asset request to completed delivery back to the requestor.  
 Apdexは、決められた敷居値を超えることにもとづく応答速度の計量法です。不満足な応答速度に対する満足な応答時間の比率を計測します。応答時間はアセットの要求から要求者へ転送完了するまでを計測されます。
 
-The application owner defines a response time threshold T. All responses handled in T or less time satisfy the user.
+The application owner defines a response time threshold T. All responses handled in T or less time satisfy the user.  
 アプリケーションのオーナーは応答時間の敷居値「T」を定義します。すべての応答は「T」で処理させるかユーザを満足させる時間以内とする。
 
-For example, if T is 1.2 seconds and a response completes in 0.5 seconds, then the user is satisfied. All responses greater than 1.2 seconds dissatisfy the user.
+For example, if T is 1.2 seconds and a response completes in 0.5 seconds, then the user is satisfied. All responses greater than 1.2 seconds dissatisfy the user.  
 例えば、もし「T」が1.2秒であるとして、応答時間が0.5秒で完了するならば、ユーザは満足している。1.2秒より長いすべての応答時間は、ユーザに満足されない。
 
-You can define Apdex T values for each of your New Relic APM applications, with separate values for app server and end-user browser performance (page load timing). You can also define individual Apdex T thresholds for key transactions.
+You can define Apdex T values for each of your New Relic APM applications, with separate values for app server and end-user browser performance (page load timing). You can also define individual Apdex T thresholds for key transactions.  
 あなたがNew Relic APM アプリケーションの各々に対して、Aappサーバとend-userブラウザパフォーマンス（ページ読み込み時間）を分けて持たせたpdex T値を定義できる。keyトランザクションに対して独立のApdex T閾値を定義することもできる。
 
 
-For a summary of Apdex, watch this video (approximately 6.5 minutes).
+For a summary of Apdex, watch this video (approximately 6.5 minutes).  
 （Apdexの集計に対して、概要説明のビデオが公開されている）
 
 
 ## Apdex levels
 
-Apdex tracks three response counts:
+Apdex tracks three response counts:  
 Apdexは3つの応答回数をトラックする：
 
 * Satisfied: The response time is less than or equal to T. (満足された： 応答時間が「T」より小さいか同じであるとき）
 * Tolerating: The response time is greater than T and less than or equal to 4T. In this example, 4 x 1.2 = 4.8 seconds as the maximum tolerable response time. (我慢できる：応答時間が「T」より大きいが「T」の4倍より小さい。この例では 最大の我慢できる時間として、4 x 1.2 = 4.8秒 となる)
     Frustrated: The response time is greater than 4T. (失望させた：応答時間が「T」の4倍おり長い。)
 
-The Time calculation will change based on your own app's T setting. In the following example, T = 1.2 seconds.
+The Time calculation will change based on your own app's T setting. In the following example, T = 1.2 seconds.  
 時間計測はあなた自身のappのT設定に基づいて変化します。以下のサンプルでは T = 1.2秒です。
 
 | Level |  Multiplier | Time (T Example = 1.2) |
@@ -57,7 +57,7 @@ Note: Your configuration file's apdex_f value is four times your app server's Ap
 
 ## Apdex score
 
-The Apdex score is a ratio value of the number of satisfied and tolerating requests to the total requests made. Each satisfied request counts as one request, while each tolerating request counts as half a satisfied request.
+The Apdex score is a ratio value of the number of satisfied and tolerating requests to the total requests made. Each satisfied request counts as one request, while each tolerating request counts as half a satisfied request.  
 Apdexスコアは、生成されるすべてのリクエストに対する満たされたときと我慢できるリクエストの数の比率です。各満足されたリクエストは1リクエストで数え、各我慢できるリクエスト数は満足されたリクエスト数の半分として数える。
 
 chart-apdex-noexp.png
