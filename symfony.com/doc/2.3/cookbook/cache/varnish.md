@@ -11,17 +11,21 @@ edit this page
 ```
 
 Because Symfony's cache uses the standard HTTP cache headers, the Symfony Reverse Proxy can easily be replaced with any other reverse proxy. Varnish is a powerful, open-source, HTTP accelerator capable of serving cached content fast and including support for Edge Side Includes.  
-Symfonyのcacheは標準的なHTTP cache headersを使うために、SymfonyのリバースProxyはあらゆる他のリバースproxyを置き換えやすい。Varnishは強力で、
+Symfonyのcacheは標準的なHTTP cache headersを使うために、SymfonyのリバースProxyはあらゆる他のリバースproxyに置き換えやすい。Varnishは強力で、オープンソースで、キャッシュされたコンテンツを素早く取り扱う有効なHTTP アクセラレータであり、そしてEdge Side Includesのサポートを含んでいます。
 
 
 ### Make Symfony Trust the Reverse Proxy¶
 
-Varnish automatically forwards the IP as X-Forwarded-For and leaves the X-Forwarded-Proto header in the request. If you do not configure Varnish as trusted proxy, Symfony will see all requests as coming through insecure HTTP connections from the Varnish host instead of the real client.
+Varnish automatically forwards the IP as X-Forwarded-For and leaves the X-Forwarded-Proto header in the request. If you do not configure Varnish as trusted proxy, Symfony will see all requests as coming through insecure HTTP connections from the Varnish host instead of the real client.  
+Varnishは自動的にX-Forwarded-ForとしてIPを転送し、そして、requestにX-Forwarded-Protoヘッダを残します。もし、信頼されたproxyとしてVarnishを構成しないならば、Symfonyは実クライアントの代わりにVarnishホストからのセキュアではないHTTPコネクションを介して来るすべてのrequestsを評価するでしょう。
 
-Remember to configure framework.trusted_proxies in the Symfony configuration so that Varnish is seen as a trusted proxy and the X-Forwarded headers are used.
-Routing and X-FORWARDED Headers¶
+Remember to configure framework.trusted_proxies in the Symfony configuration so that Varnish is seen as a trusted proxy and the X-Forwarded headers are used.  
+Varnishが信頼されるproxyとX-forwardedヘッダーが使われていることを示すため、Symfony設定のframework.trusted_proxiesの構成することを覚えなさい。
 
-If the X-Forwarded-Port header is not set correctly, Symfony will append the port where the PHP application is running when generating absolute URLs, e.g. http://example.com:8080/my/path. To ensure that the Symfony router generates URLs correctly with Varnish, add the correct port number in the X-Forwarded-Port header. This port depends on your setup.
+### Routing and X-FORWARDED Headers¶
+
+If the X-Forwarded-Port header is not set correctly, Symfony will append the port where the PHP application is running when generating absolute URLs, e.g. http://example.com:8080/my/path. To ensure that the Symfony router generates URLs correctly with Varnish, add the correct port number in the X-Forwarded-Port header. This port depends on your setup.  
+もし、X-Forwarded-Portヘッダが正しく設定されていないと、Symfonyは絶対URL（例えば、http://example.com:8080/my/path)を生成するときにPHPアプリケーションが実行しているポートに追加するでしょう。Symfonyルータが正しくURLSを生成すること、X-Forwarded-Portヘッダで参加メンバーに保証します。このポートはセットアップに依存します。
 
 Suppose that external connections come in on the default HTTP port 80. For HTTPS connections, there is another proxy (as Varnish does not do HTTPS itself) on the default HTTPS port 443 that handles the SSL termination and forwards the requests as HTTP requests to Varnish with a X-Forwarded-Proto header. In this case, add the following to your Varnish configuration:
 
