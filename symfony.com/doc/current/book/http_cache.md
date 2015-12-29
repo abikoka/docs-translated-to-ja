@@ -1,8 +1,10 @@
 ## Symfony Reverse Proxy
 
-Symfony comes with a reverse proxy (also called a gateway cache) written in PHP. Enable it and cacheable responses from your application will start to be cached right away. Installing it is just as easy. Each new Symfony application comes with a pre-configured caching kernel (AppCache) that wraps the default one (AppKernel). The caching Kernel is the reverse proxy.
+Symfony comes with a reverse proxy (also called a gateway cache) written in PHP. Enable it and cacheable responses from your application will start to be cached right away. Installing it is just as easy. Each new Symfony application comes with a pre-configured caching kernel (AppCache) that wraps the default one (AppKernel). The caching Kernel is the reverse proxy. 
+(SymfonyはPHPで記述されるreverse proxy（gateway cacheと呼ばれているものもまた）を備えている。それを有効化し、アプリケーションからのキャッシュ可能なレスポンスはすぐにキャッシュさせることを開始できる。それを導入することは極めて簡単である。新しいSymfony アプリケーションはデフォルトの一つ（AppKernel)をラップするpre-configured caching kernel（AppCache）を備えている。caching kernelはreverse proxyです。）
 
-To enable caching, modify the code of a front controller to use the caching kernel:
+To enable caching, modify the code of a front controller to use the caching kernel: 
+（キャッシングを有効化するために、caching kernelを利用するようにフロントコントローラーの記述を編集しなさい：）
 
 ```
 // web/app.php
@@ -22,10 +24,11 @@ $response->send();
 $kernel->terminate($request, $response);
 ```
 
-The caching kernel will immediately act as a reverse proxy - caching responses from your application and returning them to the client.
+The caching kernel will immediately act as a reverse proxy - caching responses from your application and returning them to the client. 
+（caching kernelはreverse proxyとして直ちに実行するでしょう - アプリケーションからのレスポンスをキャッシングし、それらをクライアントに返す）
 
 
-> If you're using the framework.http_method_override option to read the HTTP method from a _method parameter, see the above link for a tweak you need to make.
+> If you're using the framework.http_method_override option to read the HTTP method from a _method parameter, see the above link for a tweak you need to make. 
 
 > The cache kernel has a special getLog() method that returns a string representation of what happened in the cache layer. In the development environment, use it to debug and validate your cache strategy:
 > ```
