@@ -63,23 +63,30 @@ class AppCache extends HttpCache
 Here is a list of the main options:
 
 * default_ttl
-    * The number of seconds that a cache entry should be considered fresh when no explicit freshness information is provided in a response. Explicit Cache-Control or Expires headers override this value (default: 0).
+    * The number of seconds that a cache entry should be considered fresh when no explicit freshness information is provided in a response. Explicit Cache-Control or Expires headers override this value (default: 0). 
+    （明示的なフレッシュな情報がレスポンスに提供されていない時のキャッシュエントリーがフレッシュを検討させる秒数。明示的なCache-ControlやExpiresヘッダはこの値を上書きする（デフォルト値：０））
 * private_headers
-    * Set of request headers that trigger "private" Cache-Control behavior on responses that don't explicitly state whether the response is public or private via a Cache-Control directive (default: Authorization and Cookie).
+    * Set of request headers that trigger "private" Cache-Control behavior on responses that don't explicitly state whether the response is public or private via a Cache-Control directive (default: Authorization and Cookie). 
+    （Cache-Control ディレクティブに対してpublicやprivateなレスポンスであるかどうかを明示的にな状態提示されていないレスポンスに対する"private" Cache-Controlの振る舞いを起動するリクエストヘッダのセット。）
 * allow_reload
-    * Specifies whether the client can force a cache reload by including a Cache-Control "no-cache" directive in the request. Set it to true for compliance with RFC 2616 (default: false).
+    * Specifies whether the client can force a cache reload by including a Cache-Control "no-cache" directive in the request. Set it to true for compliance with RFC 2616 (default: false). 
+    （リクエストにCache-Controlの"no-cache"ディレクティブを含む事によってクライアント側がキャッシュの再読み見込みを強制できるかどうかを指定する。RFC2616のコンプライアンスではtrueを設定する）
 * allow_revalidate
-    * Specifies whether the client can force a cache revalidate by including a Cache-Control "max-age=0" directive in the request. Set it to true for compliance with RFC 2616 (default: false).
+    * Specifies whether the client can force a cache revalidate by including a Cache-Control "max-age=0" directive in the request. Set it to true for compliance with RFC 2616 (default: false). 
+    （リクエストにCache-Controlの"max-age=0"ディレクティブを含む事によってクライアント側がキャッシュの再評価(revalidate)を強制できるかどうかを指定する。RFC2616のコンプライアンスではtrueを設定する）
 * stale_while_revalidate
-    * Specifies the default number of seconds (the granularity is the second as the Response TTL precision is a second) during which the cache can immediately return a stale response while it revalidates it in the background (default: 2); this setting is overridden by the stale-while-revalidate HTTP Cache-Control extension (see RFC 5861).
+    * Specifies the default number of seconds (the granularity is the second as the Response TTL precision is a second) during which the cache can immediately return a stale response while it revalidates it in the background (default: 2); this setting is overridden by the stale-while-revalidate HTTP Cache-Control extension (see RFC 5861). 
+    （バックグラウンドでキャッシュがレスポンスを再評価していいる間にキャッシュが直ちに古くなったレスポンスを返すまでの（ResponseTTLが秒数であると同じく粒度は秒数です）デフォルト秒数を指定する；この設定はstale-while-revalidate HTTP Cache-Control拡張によって上書きされます（see RFC 5861)）
 * stale_if_error
-    * Specifies the default number of seconds (the granularity is the second) during which the cache can serve a stale response when an error is encountered (default: 60). This setting is overridden by the stale-if-error HTTP Cache-Control extension (see RFC 5861).
+    * Specifies the default number of seconds (the granularity is the second) during which the cache can serve a stale response when an error is encountered (default: 60). This setting is overridden by the stale-if-error HTTP Cache-Control extension (see RFC 5861). 
+    （エラーに出くわした際のキャッシュが古いレスポンスを供給できるまでの（細かい粒度は秒数です）デフォルトの秒数を指定する）
 
-If debug is true, Symfony automatically adds an X-Symfony-Cache header to the response containing useful information about cache hits and misses.
+If debug is true, Symfony automatically adds an X-Symfony-Cache header to the response containing useful information about cache hits and misses. 
+（もしdebugがtrueならば、Symfonyは自動的にX-Symfony-Cacheヘッダ（cache hitsやmissesについての便利な情報を含む）を追加します。）
 
 > ### Changing from one Reverse Proxy to another
 >
-> The Symfony reverse proxy is a great tool to use when developing your website or when you deploy your website to a shared host where you cannot install anything beyond PHP code. But being written in PHP, it cannot be as fast as a proxy written in C. That's why it is highly recommended you use Varnish or Squid on your production servers if possible. The good news is that the switch from one proxy server to another is easy and transparent as no code modification is needed in your application. Start easy with the Symfony reverse proxy and upgrade later to Varnish when your traffic increases.
+> The Symfony reverse proxy is a great tool to use when developing your website or when you deploy your website to a shared host where you cannot install anything beyond PHP code. But being written in PHP, it cannot be as fast as a proxy written in C. That's why it is highly recommended you use Varnish or Squid on you r production servers if possible. The good news is that the switch from one proxy server to another is easy and transparent as no code modification is needed in your application. Start easy with the Symfony reverse proxy and upgrade later to Varnish when your traffic increases.
 > 
 > For more information on using Varnish with Symfony, see the How to use Varnish cookbook chapter.
 
